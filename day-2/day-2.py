@@ -9,7 +9,19 @@ def is_safe(report: List[int]) -> bool:
 
     return increasing or decreasing
 
-# function that loops through all reports and counts the number of safe ones
+def is_safe_with_dampener(report: List[int]) -> bool:
+    if is_safe(report):
+        return True
+
+    # check each combination of the report with one level removed, if even one combo is safe, then the report is safe
+    for i in range(len(report)):
+        pruned_report = report[:i] + report[i + 1:]
+        if is_safe(pruned_report):
+            return True
+
+    return False
+
+# function that loops through all reports and counts the number of safe ones (adapted for puzzle 2 f
 def count_safe_reports(filename: str) -> int:
     count = 0
 
@@ -17,7 +29,7 @@ def count_safe_reports(filename: str) -> int:
         for line in file:
             # split each line into a list of ints
             report = list(map(int, line.split()))
-            if is_safe(report):
+            if is_safe_with_dampener(report):
                 count += 1
 
     return count
