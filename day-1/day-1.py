@@ -35,7 +35,7 @@ def calculate_similarity_score(left_list, right_list):
     return similarity_score
 
 # specify our file path with the lists
-file_path = "puzzle-input.txt"
+file_path = "day-1-input.txt"
 
 left_list, right_list = read_lists_from_file(file_path)
 
